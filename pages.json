@@ -1,0 +1,58 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"disableScroll": true, // 页面禁止滚动
+				"navigationStyle": "custom", // 取消导航栏
+				"backgroundColor": "#F8F9FA"
+      //           "app-plus": {
+      //               "pullToRefresh": {
+						// "offset" : "40px",
+      //                   "support": true,
+      //                   "color": "#ff3333",
+      //                   "style": "circle"
+      //               }
+      //           }
+            }
+		}
+	    ,{
+            "path" : "pages/order/index",
+            "style" : {
+				"navigationBarTitleText":"我的订单"
+			}
+        }
+        ,{
+            "path" : "pages/createOrder/index",
+            "style" : {
+				"navigationBarTitleText":"创建订单",
+				"navigationBarBackgroundColor":"#007AFF"
+			}
+        }
+    ],
+	"globalStyle": {
+		"enablePullDownRefresh": true,
+		"backgroundTextStyle":"dark",
+		"navigationBarBackgroundColor":"#ffffff",
+		"navigationBarTextStyle":"black",
+		"backgroundColor": "#F8F9FA",
+		"animationType": "slide-in-right",
+		"animationDuration": 200
+	},
+	"tabBar": {
+		"backgroundColor":"#FFFFFF",
+		"borderStyle":"black",
+		"color":"#666666",
+		"selectedColor":"#222222",
+		"list": [
+			{
+				"pagePath":"pages/index/index",
+				"text":"首页"
+			},
+			{
+				"pagePath":"pages/order/index",
+				"text":"订单"
+			}
+		]
+	}
+}
