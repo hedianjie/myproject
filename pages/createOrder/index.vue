@@ -2,7 +2,7 @@
 	<view class="content">
 		<view class="layout-header">
 			<!-- 地址 -->
-			<view class="address-wrapper">
+			<view class="address-wrapper wrapper bar">
 				<view class="m-b-10">
 					<text class="address-tag">公司</text>
 					<text class="address-text">中医火鸡士大夫奥德赛as电费02中医火鸡士大夫奥德赛as电费02</text>
@@ -14,18 +14,41 @@
 				<view class="address-icon"><fa-icon type="angle-right" size="20" color="#777777"></fa-icon></view>
 			</view>
 			<!-- 选择时间 -->
-			<view class="time-wrapper">
-				<view class="time-text">立即到达</view>
-				<view class="time-content">大约22:49到达</view>
-				<view class="time-icon"><fa-icon type="angle-right" size="20" color="#777777"></fa-icon></view>
+			<my-picker @arriveTime="getArriveTime">
+				<view class="time-wrapper wrapper" slot="picker">
+					<view v-if="true" class="time-text">约定时间</view>
+					<view v-else class="time-text">立即到达</view>
+					<view class="time-content">大约22:49到达</view>
+					<view class="time-icon"><fa-icon type="angle-right" size="20" color="#777777"></fa-icon></view>
+				</view>
+			</my-picker>
+		</view>
+		<view class="layout-content wrapper">
+			<view class="info-title">订单详细</view>
+			<view class="info-list">
+				<view class="info-list-left">应付款</view>
+				<view class="info-list-right">￥12.9元</view>
+			</view>
+			<view class="info-list">
+				<view class="info-list-left">追加红包</view>
+				<view class="info-list-right">￥5</view>
+			</view>
+			<view class="info-list">
+				<view class="info-list-left">优惠券</view>
+				<view class="info-list-right color-red">-￥5</view>
+			</view>
+			
+			<view class="info-list total-info bar-top">
+				<view class="info-list-left f-s-18 f-w-b">总计</view>
+				<view class="info-list-right f-s-20">￥5</view>
 			</view>
 		</view>
-		<view class="layout-content"></view>
 		<view class="layout-footer"></view>
 	</view>
 </template>
 
 <script>
+	import myPicker from "./picker.vue";
 	import faIcon from "@/components/kilvn-fa-icon/fa-icon.vue";
 	export default {
 		data() {
@@ -34,9 +57,15 @@
 			}
 		},
 		methods: {
-			
+			// 选择到达时间
+			getArriveTime(data) {
+				console.log(data);
+			}
 		},
-		components: {faIcon}
+		components: {
+			faIcon,
+			myPicker
+		}
 	}
 </script>
 
@@ -47,26 +76,30 @@
 	.content{
 		background: linear-gradient(top, #007AFF, #ffffff, #ffffff);
 	}
-	.m-b-20{
-		margin-bottom: 20px;
+	.bar{
+		border-bottom: 1px solid #ccc;
 	}
-	.m-b-15{
-		margin-bottom: 15px;
+	.bar-top{
+		border-top: 1px solid #ccc;
 	}
-	.m-b-10{
-		margin-bottom: 10px;
+	.wrapper{
+		padding: 25px 12px;
 	}
-	.layout-header{
+	.layout-header,
+	.layout-content{
 		margin: 10px;
-		margin-bottom: 5px;
+		margin-bottom: 7px;
 		margin-top: 0;
 		background: #ffffff;
 		box-shadow: 0 0 12px #cccccc;
 		border-radius: 6px;
 	}
+	
+	/**
+	 * layout-header
+	 */
 	.address-wrapper{
 		position: relative;
-		padding: 25px 12px;
 		padding-right: 30px;
 		padding-bottom: 20px;
 	}
@@ -100,9 +133,8 @@
 	}
 	.time-wrapper{
 		position: relative;
-		padding: 20px 12px;
+		padding: 17px 12px;
 		padding-right: 30px;
-		border-top: 1px solid #ccc;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -122,5 +154,31 @@
 		top: 50%;
 		right: 10px;
 		margin-top: -10px;
+	}
+	
+	/**
+	 * layout-content
+	 */
+	.info-title{
+		font-size: 16px;
+		font-weight: bold;
+		color: #333;
+		margin-bottom: 15px;
+	}
+	
+	.info-list{
+		padding: 15px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: relative;
+	}
+	.info-list .info-list-left{
+		font-size: 14px;
+	}
+	.info-list .info-list-right{
+		font-size: 15px;
+		font-weight: bold;
+		
 	}
 </style>
