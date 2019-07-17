@@ -47,6 +47,7 @@
 		font-style: normal;
 		line-height: 1;
 		display: inline-block;
+		vertical-align: middle;
 		text-decoration: none;
 		-webkit-font-smoothing: antialiased;
 	}

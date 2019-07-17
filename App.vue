@@ -20,6 +20,59 @@
 	page{
 		font-size: 16px;
 	}
+	.p-a{
+	  position: absolute;
+	}
+	.p-r{
+	  position: relative;
+	}
+	.p-f{
+	  position: fixed;
+	}
+	.pull-none{
+		float: none !important;
+	}
+	.pull-left{
+		float: left !important;
+	}
+	.pull-right{
+		float: right !important;
+	}
+	.t-a-l{
+		text-align: left;
+	}
+	.t-a-c{
+		text-align: center;
+	}
+	.t-a-right{
+		text-align: right;
+	}
+
+	.d-i-b{
+	  display: inline-block !important;
+	}
+	.d-i{
+	  display: inline !important;
+	}
+	.d-b{
+	  display: block !important;
+	}
+	.d-t{
+	  display: table !important;
+	}
+	.d-t-c{
+	  display: table-cell !important;
+	}
+
+	.v-a-t{
+		vertical-align: top;
+	}
+	.v-a-m{
+		vertical-align: middle;
+	}
+	.v-a-b{
+		vertical-align: bottom;
+	}
 	.color-red{
 		color: #E4564F !important;
 	}

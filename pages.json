@@ -26,9 +26,22 @@
             "path" : "pages/createOrder/index",
             "style" : {
 				"navigationBarTitleText":"创建订单",
-				"navigationBarBackgroundColor":"#007AFF"
+				"navigationBarBackgroundColor":"#007AFF",
+				"navigationBarTextStyle": "white"
 			}
         }
+        ,{
+            "path" : "pages/remarkInfo/index",
+            "style" : {
+				"navigationBarTitleText":"订单备注",
+				"navigationBarBackgroundColor":"#007AFF",
+				"navigationBarTextStyle": "white"
+			}
+        }
+        // ,{
+        //     "path" : "pages/pay/pay",
+        //     "style" : {}
+        // }
     ],
 	"globalStyle": {
 		"enablePullDownRefresh": true,
