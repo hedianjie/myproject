@@ -38,10 +38,15 @@
 				"navigationBarTextStyle": "white"
 			}
         }
-        // ,{
-        //     "path" : "pages/pay/pay",
-        //     "style" : {}
-        // }
+        ,{
+            "path" : "pages/addressList/index",
+            "style" : {
+				"navigationBarTitleText":"地址",
+				"navigationBarBackgroundColor":"#007AFF",
+				"navigationBarTextStyle": "white"
+			}
+        }
+       
     ],
 	"globalStyle": {
 		"enablePullDownRefresh": true,

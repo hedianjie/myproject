@@ -2,7 +2,7 @@
 	<view class="content">
 		<view class="layout-header">
 			<!-- 地址 -->
-			<view class="address-wrapper wrapper bar">
+			<navigator class="address-wrapper wrapper bar" url="../addressList/index">
 				<view class="m-b-10">
 					<text class="address-tag">公司</text>
 					<text class="address-text">中医火鸡士大夫奥德赛as电费02中医火鸡士大夫奥德赛as电费02</text>
@@ -12,7 +12,7 @@
 					<text class="address-phone">15567702010</text>
 				</view>
 				<view class="wrapper-icon"><fa-icon type="angle-right" size="20" color="#999999"></fa-icon></view>
-			</view>
+			</navigator>
 			<!-- 选择时间 -->
 			<my-picker @arriveTime="getArriveTime">
 				<view class="time-wrapper wrapper bar" slot="picker">

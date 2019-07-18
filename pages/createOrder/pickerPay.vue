@@ -4,22 +4,19 @@
 		<div :class="picker_class">
 			<div class="h-uni-picker-header">
 				选择支付方式
+				<div class="h-uni-picker-close" @click="hide"><fa-icon type="times" size="20" color="#333"></fa-icon></div>
 				<!-- <div class="h-uni-picker-action h-uni-picker-action-cancel" @click="hide">取消</div>
 				<div class="h-uni-picker-action h-uni-picker-action-confirm" @click="submit(value)">确定</div> -->
 			</div>
 			<uni-picker-view class="h-uni-picker-content">
-				<view class="h-uni-picker-list">
-					<view v-for="(item, index) in pay_list" @click="change(item.key)">
-						<view class="h-uni-picker-list-left">
-							<fa-icon :type="item.icon" size="16" margin="0 5px 0 0" :color="item.color"></fa-icon>{{item.name}}
-						</view>
-						<view class="h-uni-picker-list-right">
-							<fa-icon type="check-circle" size="20" margin="0 5px 0 0" :color="value == item.key ? '#42b983' : ''"></fa-icon>
-						</view>
+				<view class="h-uni-picker-list" v-for="(item, index) in pay_list" @click="change(item.key)">
+					<view class="h-uni-picker-list-left">
+						<fa-icon :type="item.icon" size="16" margin="0 5px 0 0" :color="item.color"></fa-icon>{{item.name}}
+					</view>
+					<view class="h-uni-picker-list-right">
+						<fa-icon type="check-circle" size="20" margin="0 5px 0 0" :color="value == item.key ? '#42b983' : ''"></fa-icon>
 					</view>
 				</view>
-				<view class="h-uni-picker-list"></view>
-				<view class="h-uni-picker-list"></view>
 			</uni-picker-view>
 		</div>
 		<view @click="show">
@@ -29,6 +26,7 @@
 </template>
 
 <script>
+	import faIcon from "@/components/kilvn-fa-icon/fa-icon.vue";
 	export default {
 		props: {
 			defaultValue: {
@@ -110,7 +108,11 @@
 				
 				this.value = key;
 				this.$emit("change", key);
+				this.hide();
 			}
+		},
+		components: {
+			faIcon
 		}
 	}
 </script>
@@ -165,6 +167,15 @@
 		height: 45px;
 		background-color: #fff;
 		line-height: 45px;
+		border-bottom: 1px solid #ccc;
+	}
+	.h-uni-picker .h-uni-picker-header .h-uni-picker-close{
+		position: absolute;
+		right: 0;
+		top: 0;
+		line-height: 45px;width: 45px;
+		text-align: center;
+		
 	}
 	.h-uni-picker .h-uni-picker-action{
 		display: block;
@@ -191,5 +202,13 @@
 		width: 100%;
 		height: 238px;
 		background-color: #fff;
+		padding: 10px;
+	}
+	.h-uni-picker .h-uni-picker-content .h-uni-picker-list{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		line-height: 54px;
+		border-bottom: 1px solid #eee;
 	}
 </style>
