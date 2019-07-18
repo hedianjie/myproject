@@ -1,5 +1,8 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		/**
+		 * 首页下单
+		 */
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -16,12 +19,18 @@
       //           }
             }
 		}
+		/**
+		 * 订单列表
+		 */
 	    ,{
             "path" : "pages/order/index",
             "style" : {
 				"navigationBarTitleText":"我的订单"
 			}
         }
+		/**
+		 * 创建订单
+		 */
         ,{
             "path" : "pages/createOrder/index",
             "style" : {
@@ -30,6 +39,9 @@
 				"navigationBarTextStyle": "white"
 			}
         }
+		/**
+		 * 订单备注 （修改 / 添加）
+		 */
         ,{
             "path" : "pages/remarkInfo/index",
             "style" : {
@@ -38,15 +50,26 @@
 				"navigationBarTextStyle": "white"
 			}
         }
+		/**
+		 * 地址列表 （查看 / 选择）
+		 */
         ,{
             "path" : "pages/addressList/index",
             "style" : {
-				"navigationBarTitleText":"地址",
 				"navigationBarBackgroundColor":"#007AFF",
 				"navigationBarTextStyle": "white"
 			}
         }
-       
+		/**
+		 * 地址详情 （新建 / 编辑）
+		 */
+        ,{
+            "path" : "pages/createAddress/index",
+            "style" : {
+				"navigationBarBackgroundColor":"#007AFF",
+				"navigationBarTextStyle": "white"
+			}
+        }
     ],
 	"globalStyle": {
 		"enablePullDownRefresh": true,
