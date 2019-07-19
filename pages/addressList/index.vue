@@ -14,9 +14,9 @@
 					<span><fa-icon type="phone " size="14" color="#999999" margin="0 5px 0 0"></fa-icon>{{item.phone}}</span>
 				</view>
 			</view>
-			<view class="address-list-right">
+			<navigator url="../createAddress/index" class="address-list-right">
 				<fa-icon type="edit" size="22" color="#999999"></fa-icon>
-			</view>
+			</navigator>
 		</view>
 	</view>
 </template>
@@ -70,37 +70,37 @@
 	.address-list {
 		position: relative;
 		background: #FFFFFF;
-		padding: 20px 0;
-		padding-right: 40px;
-		margin: 0 12px;
+		padding: 40upx 0;
+		padding-right: 80upx;
+		margin: 0 24upx;
 		border-bottom: 1px solid #ddd;
 	}
 	.address-list .address-list-left .address-header{
-		font-size: 16px;
+		font-size: 32upx;
 		font-weight: bold;
-		margin-bottom: 7px;
+		margin-bottom: 14upx;
 	}
 	.address-list .address-list-left .address-info{
-		font-size: 14px;
-		margin-bottom: 7px;
+		font-size: 28upx;
+		margin-bottom: 14upx;
 	}
 	.address-list .address-list-left .address-information{
-		font-size: 14px;
+		font-size: 28upx;
 		color: #999999;
 	}
 	.address-list .address-list-right{
 		position: absolute;
 		top: 50%;
 		right: 0;
-		width: 40px;
+		width: 80upx;
 		text-align: center;
-		margin-top: -11px;
+		margin-top: -22upx;
 	}
 	.address-list .address-list-left .address-tag{
-		margin-left: 10px;
+		margin-left: 20upx;
 		display: inline-block;
-		font-size: 12px;
-		padding: 1px 5px;
+		font-size: 24upx;
+		padding: 2upx 10upx;
 		font-weight: 400;
 		color: #fff;
 		border-radius: 2px;

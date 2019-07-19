@@ -69,8 +69,6 @@
 
 <script>
 	import faIcon from "@/components/kilvn-fa-icon/fa-icon.vue";
-	import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue";
-	import uniBadge from "@/components/uni-badge/uni-badge.vue";
 	
 	export default {
 		data() {
@@ -131,8 +129,6 @@
 		},
 		components: {
 			faIcon,
-			uniNavBar,
-			uniBadge
 		}
 	}
 </script>

@@ -329,5 +329,6 @@
 		color: #ffffff;
 		padding: 0 16px;
 		line-height: 54px;
+		font-size: 20px;
 	}
 </style>
