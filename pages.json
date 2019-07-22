@@ -70,6 +70,18 @@
 				"navigationBarTextStyle": "white"
 			}
         }
+        ,{
+            "path" : "pages/selectAddress/index",
+            "style" : {
+				"navigationBarTitleText":"选择地址"
+			}
+        }
+        ,{
+            "path" : "pages/selectCity/index",
+            "style" : {
+				"navigationBarTitleText":"选择城市"
+			}
+        }
     ],
 	"globalStyle": {
 		"enablePullDownRefresh": true,

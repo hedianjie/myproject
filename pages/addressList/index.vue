@@ -18,6 +18,10 @@
 				<fa-icon type="edit" size="22" color="#999999"></fa-icon>
 			</navigator>
 		</view>
+		
+		<navigator url="../createAddress/index" class="add-address">
+			<fa-icon type="plus" size="18" color="#007AFF" margin="0 5px 0 0"></fa-icon>添加常用地址
+		</navigator>
 	</view>
 </template>
 
@@ -65,7 +69,10 @@
 
 <style scoped>
 	page{
-		background: #ffffff;;
+		background: #ffffff;
+	}
+	.content{
+		padding-bottom: 60px;
 	}
 	.address-list {
 		position: relative;
@@ -113,5 +120,18 @@
 	}
 	.address-tag.tag-2{
 		background: #28A745;
+	}
+	.add-address{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		color:#007AFF;
+		border-top: 1px solid #e1e1e1;
+		font-size: 16px;
+		background: #f1f1f1;
 	}
 </style>
