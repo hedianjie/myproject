@@ -77,22 +77,22 @@
 	.address-list {
 		position: relative;
 		background: #FFFFFF;
-		padding: 40upx 0;
-		padding-right: 80upx;
-		margin: 0 24upx;
+		padding: 20px 0;
+		padding-right: 40px;
+		margin: 0 12px;
 		border-bottom: 1px solid #ddd;
 	}
 	.address-list .address-list-left .address-header{
-		font-size: 32upx;
+		font-size: 16px;
 		font-weight: bold;
-		margin-bottom: 14upx;
+		margin-bottom: 7px;
 	}
 	.address-list .address-list-left .address-info{
-		font-size: 28upx;
-		margin-bottom: 14upx;
+		font-size: 14px;
+		margin-bottom: 7px;
 	}
 	.address-list .address-list-left .address-information{
-		font-size: 28upx;
+		font-size: 14px;
 		color: #999999;
 	}
 	.address-list .address-list-right{
@@ -101,13 +101,13 @@
 		right: 0;
 		width: 80upx;
 		text-align: center;
-		margin-top: -22upx;
+		margin-top: -11px;
 	}
 	.address-list .address-list-left .address-tag{
-		margin-left: 20upx;
+		margin-left: 10px;
 		display: inline-block;
-		font-size: 24upx;
-		padding: 2upx 10upx;
+		font-size: 12px;
+		padding: 1px 5px;
 		font-weight: 400;
 		color: #fff;
 		border-radius: 2px;

@@ -20,7 +20,7 @@
 				<input :type="'text'" maxlength="10" class="form-control" value="" placeholder="手机号码" v-model="phone"/>
 			</view>
 			
-			<navigator url="../selectCity/index" class="form-group form-group-phone bar">
+			<navigator url="../selectAddress/index" class="form-group form-group-phone bar">
 				<view class="label">地址</view>
 				<input :type="'text'" maxlength="10" class="form-control" value="" placeholder="选择常用地址" v-model="address"/>
 				<view class="form-icon"><fa-icon type="angle-right" size="24" color="#999999"></fa-icon></view>
