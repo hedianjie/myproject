@@ -99,7 +99,7 @@
 		position: absolute;
 		top: 50%;
 		right: 0;
-		width: 80upx;
+		width: 40px;
 		text-align: center;
 		margin-top: -11px;
 	}

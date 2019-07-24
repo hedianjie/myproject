@@ -3,8 +3,11 @@
 		<view class="layout-header">
 			<view class="header-main">
 				<view class="search-city">
-					<view class="search-city-content">长春市阿萨德</view>
-					<view class="serach-city-icon"><fa-icon type="angle-down" size="12" color="#999999" style="0 0 0 5px"></fa-icon></view>
+					<navigator url="../selectCity/index" class="search-city-content">
+						<view class="search-city-text">长河堤发射水淀粉</view>
+						<view class="search-city-icon"><fa-icon type="angle-down" size="12" color="#999999" style="margin: 0 0 0 5px"></fa-icon></view>
+					</navigator>
+					<view class="search-line"></view>
 				</view>
 				<!-- <fa-icon class="search-icon" type="search" size="22" color="#999999"></fa-icon> -->
 				<input class="search-input" :type="'text'" value="" v-model="searchModel" placeholder="查找小区 / 写字楼 / 学校"/>
@@ -109,7 +112,7 @@
 		padding: 0 10px;
 	}
 	.layout-header .header-main{
-		padding-left: 100px;
+		padding-left: 90px;
 		padding-right: 36px;
 		position: relative;
 		height: 36px;
@@ -120,23 +123,36 @@
 		line-height: 36px;
 		left: 10px;
 		top: 0;
-		width: 50px;
 		position: absolute;
+	}
+	.layout-header .search-city-content{
+		display: inline-block;
+		vertical-align: top;
+	}
+	.layout-header .search-line{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 7px;
+		height: 22px;
+		width: 1px;
+		background: #999999;
+		margin-left: 7px;
+		margin-right: 7px;
+	}
+	.layout-header .search-city-text{
+		width: 50px;
 		text-align: center;
 		overflow: hidden;
 		word-break: break-all;
 		white-space: nowrap;
 		text-overflow:ellipsis;
 		font-size: 14px;
+		display: inline-block;
+		vertical-align: top;
 	}
-	.layout-header:before{
-		content: "";
-		left: 105px;
-		position: absolute;
-		top: 5px;
-		height: 26px;
-		width: 1px;
-		background: #999999;
+	.layout-header .search-city-icon{
+		display: inline-block;
+		vertical-align: top;
 	}
 	.layout-header .search-input{
 		width: 100%;

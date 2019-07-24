@@ -6,7 +6,9 @@
 			
 		</view> -->
 		<!-- 底部 -->
-		<indexed-list :options="options" :showSelect="false" @click="submit"></indexed-list>
+		<view class="index-list-wrapper">
+			<indexed-list :options="options" :showSelect="false" @click="submit"></indexed-list>
+		</view>
 	</view>
 </template>
 
@@ -37,6 +39,12 @@
 
 <style>
 	.content{
-		padding-top: 56px
+		position: fixed;
+		height: calc(100% - var(--window-top));
+		width: 100%;
+		padding-top: 56px;
+	}
+	.index-list-wrapper{
+		height: 100%;
 	}
 </style>
