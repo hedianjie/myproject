@@ -66,7 +66,7 @@ export default {
 		};
 	},
 	created() {
-		let winHeight = uni.getSystemInfoSync().windowHeight;
+		let winHeight = uni.getSystemInfoSync().windowHeight - 56; // 减去的是搜索框组件的占位高度
 		this.itemHeight = winHeight / this.options.length;
 		this.winHeight = winHeight;
 
@@ -97,7 +97,7 @@ export default {
 	methods: {
 		touchStart(e) {
 			this.touchmove = true;
-			let pageY = e.touches[0].pageY;
+			let pageY = e.touches[0].pageY - 56; // 减去的是搜索框组件的占位高度
 			let index = Math.floor(pageY / this.itemHeight);
 			let item = this.lists[index];
 			if (item) {
@@ -106,7 +106,7 @@ export default {
 			}
 		},
 		touchMove(e) {
-			let pageY = e.touches[0].pageY;
+			let pageY = e.touches[0].pageY - 56; // 减去的是搜索框组件的占位高度
 			let index = Math.floor(pageY / this.itemHeight);
 			let item = this.lists[index];
 			if (item) {

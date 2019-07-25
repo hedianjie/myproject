@@ -1,7 +1,8 @@
 <template>
 	<view class="content">
 		<search-address @selected="submit"></search-address>
-		<view class="map-wrapper"></view>
+		
+		<map-view></map-view>
 		<scroll-view scroll-y="true" class="list-wrapper">
 			<view class="list active">
 				<view class="list-icon">
@@ -37,8 +38,10 @@
 </template>
 
 <script>
-	import faIcon from "../../components/kilvn-fa-icon/fa-icon.vue";
+	
+	import faIcon from "@/components/kilvn-fa-icon/fa-icon.vue";
 	import searchAddress from "./searchAddress.vue";
+	import mapView from "./mapView.vue"
 	export default {
 		data() {
 			return {
@@ -50,7 +53,8 @@
 		},
 		components: {
 			searchAddress,
-			faIcon
+			faIcon,
+			mapView
 		}
 	}
 </script>
@@ -59,17 +63,22 @@
 	page{
 		background: #F8F9FA;
 	}
+	page-body{
+		height: 100%;
+	}
 	.content{
-		padding-top: 56px
+		padding-top: 56px;
+		height: 100%;
 	}
 	.list-wrapper{
+		height: 250px;
 		border-top: 1px solid #eee;
 		box-shadow: 0 0 10px #ccc;
 		background: #ffffff;
 		padding: 0 12px;
 	}
 	.list-wrapper .list{
-		padding: 14px 0;
+		padding: 10px 0;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
