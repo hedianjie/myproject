@@ -14,7 +14,14 @@
 </template>
 
 <script>
-	export default{ 
+	import config from '@/config.default.js';
+	export default{
+		props: {
+			cityCode:{
+				type: String,
+				default: ""
+			}
+		},
 		created() {
 			const _this = this;
 			const winInfo = uni.getSystemInfoSync();
@@ -39,9 +46,6 @@
 		},
 		data() {
 			return {
-				// mapHeight: 0,
-				
-				
 				longitude: 116.434371, // 精度
 				latitude: 39.922344, // 维度
 				markers: [
@@ -59,36 +63,159 @@
 					},
 					iconPath: "../../static/logo.png"
 				}]
-				// polyline: [{
-				// 	points: [{"longitude":"116.434371","latitude":"39.922344"},{"longitude":"116.434366","latitude":"39.921992"},{"longitude":"116.434366","latitude":"39.921992"},{"longitude":"116.434379","latitude":"39.921563"},{"longitude":"116.434379","latitude":"39.921563"},{"longitude":"116.434379","latitude":"39.921519"},{"longitude":"116.434379","latitude":"39.921519"},{"longitude":"116.434401","latitude":"39.921094"},{"longitude":"116.434401","latitude":"39.921094"},{"longitude":"116.434414","latitude":"39.920677"},{"longitude":"116.434414","latitude":"39.920677"},{"longitude":"116.434431","latitude":"39.920304"},{"longitude":"116.434431","latitude":"39.920304"},{"longitude":"116.434444","latitude":"39.920052"},{"longitude":"116.434444","latitude":"39.920052"},{"longitude":"116.43447","latitude":"39.91954"},{"longitude":"116.43447","latitude":"39.91954"},{"longitude":"116.434475","latitude":"39.919453"},{"longitude":"116.434475","latitude":"39.919453"},{"longitude":"116.434505","latitude":"39.918633"},{"longitude":"116.434505","latitude":"39.918633"},{"longitude":"116.434523","latitude":"39.918451"},{"longitude":"116.434523","latitude":"39.918451"},{"longitude":"116.434536","latitude":"39.917982"},{"longitude":"116.434536","latitude":"39.917982"},{"longitude":"116.434562","latitude":"39.917244"},{"longitude":"116.434562","latitude":"39.917244"},{"longitude":"116.434601","latitude":"39.916497"},{"longitude":"116.434601","latitude":"39.916497"},{"longitude":"116.434622","latitude":"39.916063"},{"longitude":"116.434622","latitude":"39.916063"},{"longitude":"116.434631","latitude":"39.915764"},{"longitude":"116.434631","latitude":"39.915764"},{"longitude":"116.434635","latitude":"39.915703"}],
-				// 	color: "#007AFF",
-				// 	width: 5,
-				// }]
-				// polyline: 
 			}
 		},
 		
 		methods: {
+			
+			// 移动地图位置 获取地图中心点 并且获取中心点附近商家
 			regionChange(){
 				
 				const _this = this;
+				let latitude, longitude;
 				
 				this.mapContext.getCenterLocation({
 					success(res) {
 						console.log(res)
-						_this.latitude = res.latitude;
-						_this.longitude = res.longitude;
+						longitude = res.longitude;
+						latitude = res.latitude;
+					},
+					fail(res) {
+						console.log(res, '获取<当前中心点位置>出错，暂时用假数据代替');
+						longitude = 116.434371; // 精度
+						latitude = 39.922344; // 维度
+					},
+					complete() {
+						if(_this.latitude == latitude && _this.longitude == longitude) {
+							return console.log('地图位置没有移动！');
+						}
+						// 设置中心点
+						_this.latitude = latitude;
+						_this.longitude = longitude;
+						_this.getNearby(longitude, latitude);
+					}
+				})
+			},
+			
+			// 根据经纬度获取附近商家
+			getNearby(longitude, latitude){
+				const _this = this;
+				const format = this.formatLongitudeLatitude(6, longitude, latitude);
+				const ary = [];
+				
+				uni.request({
+					url: "https://restapi.amap.com/v3/place/around",
+					data: {
+						key: config.amapKey,
+						location: `${format.longitude},${format.latitude}`,
+						city: this.cityCode,
+						citylimit: true,
+						radius: 200
+					},
+					method: "GET",
+					success(res) {
+						res = res.data;
+						if(res.status == 1) {
+							for(var i = 0 ; i < res.pois.length; i++ ){
+								const cur = res.pois[i];
+
+								ary.push({
+									name: cur.name,
+									address: cur.address,
+									location: {
+										longitude: cur.location.split(',')[0],
+										latitude: cur.location.split(',')[1]
+									},
+									distance: cur.distance,
+									cityname: cur.cityname,
+									cityCode: cur.cityCode,
+								});
+							}
+						}
+						else {
+							uni.showToast({
+								title: `获取周围信息失败: ${res.info}`
+							})
+						}
+					},
+					fail(res) {
+						uni.showToast({
+							title: `error: 获取周围信息失败: ${res}`
+						});
+					},
+					complete() {
+						_this.submit(ary);
+					}
+				})
+			},
+			
+			// 获取当前定位 经纬度 移动当前定位
+			getCurrentLocation() {
+				const _this = this;
+				let latitude, longitude;
+				
+				uni.getLocation({
+					type: 'gcj02',
+					success(res) {
+						latitude = res.latitude;
+						longitude = res.longitude;
+					},
+					fail(res) {
+						// console.log(res, '获取<当前位置>出错，暂时用假数据代替');
+						longitude = 116.434371; // 精度
+						latitude = 39.922344; // 维度
+						
+					},
+					complete() {
+						if(_this.markers[0].latitude == latitude && _this.markers[0].longitude == longitude) {
+							// return console.log('用户没有移动！');
+							return;
+						}
+						
 						_this.markers = [{
-							longitude: res.longitude, // 精度
-							latitude: res.latitude, // 维度
+							longitude: longitude, // 精度
+							latitude: latitude, // 维度
 						}]
 					}
 				})
 			},
-		},
-		mounted() {
 			
-			// this.appMap = this.mapContext.$getAppMap();
+			/**
+			 * 格式化经纬度 截取到小数点多少位
+			 * @param {Object} size格式化长度
+			 * @param {Object} longitude经度
+			 * @param {Object} latitude纬度
+			 */
+			formatLongitudeLatitude(size, longitude, latitude) {
+				let times = 1;
+				for (var i = 0 ;i < size; i++) {times = times * 10};
+				
+				console.log(times)
+				return {
+					longitude: Math.round(longitude * times) / times,
+					latitude: Math.round(latitude * times) / times,
+				}
+			},
+			
+			/**
+			 * @param {Object} data格式化后的搜索结果数据
+			 */
+			submit(data) {
+				if(data) {
+					this.$emit("around", data)
+				}
+			}
+			
+		},
+		
+		
+		mounted() {
+			window.setInterval(() =>{
+				this.getCurrentLocation();
+			}, 1000);
+			
+			// 初始化获取自身周围
+			this.getNearby(this.longitude, this.latitude)
 		}
 	}
 </script>

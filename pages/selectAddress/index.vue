@@ -2,35 +2,15 @@
 	<view class="content">
 		<search-address @selected="submit"></search-address>
 		
-		<map-view></map-view>
+		<map-view @around="regionChange"></map-view>
 		<scroll-view scroll-y="true" class="list-wrapper">
-			<view class="list active">
+			<view v-for="item in addressList" class="list">
 				<view class="list-icon">
 					<fa-icon type="map-marker" size="26" color="#333333"></fa-icon>
 				</view>
 				<view class="list-conetnt">
-					<view class="list-header">把 Font Awesome 图标放在任意</view>
-					<view class="list-tip">把 Font Awesome 图标放在任意把 Font Awesome 图标放在任意</view>
-				</view>
-			</view>
-			
-			<view class="list">
-				<view class="list-icon">
-					<fa-icon type="map-marker" size="26" color="#333333"></fa-icon>
-				</view>
-				<view class="list-conetnt">
-					<view class="list-header">把 Font Awesome 图标放在任意</view>
-					<view class="list-tip">把 Font Awesome 图标放在任意把 Font Awesome 图标放在任意</view>
-				</view>
-			</view>
-			
-			<view class="list">
-				<view class="list-icon">
-					<fa-icon type="map-marker" size="26" color="#333333"></fa-icon>
-				</view>
-				<view class="list-conetnt">
-					<view class="list-header">把 Font Awesome 图标放在任意</view>
-					<view class="list-tip">把 Font Awesome 图标放在任意把 Font Awesome 图标放在任意</view>
+					<view class="list-header">{{item.name}}</view>
+					<view class="list-tip">{{item.address}}</view>
 				</view>
 			</view>
 		</scroll-view>
@@ -45,11 +25,13 @@
 	export default {
 		data() {
 			return {
-				
+				addressList: []
 			}
 		},
 		methods: {
-			
+			regionChange(addressList) {
+				this.addressList = addressList;
+			}
 		},
 		components: {
 			searchAddress,
@@ -75,18 +57,23 @@
 		border-top: 1px solid #eee;
 		box-shadow: 0 0 10px #ccc;
 		background: #ffffff;
-		padding: 0 12px;
 	}
 	.list-wrapper .list{
-		padding: 10px 0;
-		display: flex;
+		padding: 10px 10px;
+		padding-left: 50px;
+		position: relative;
+		/* display: flex;
 		align-items: center;
 		justify-content: space-between;
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid #eee; */
 	}
 	.list-wrapper .list .list-icon{
-		width: 50px;
-		margin-right: 12px;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		height: 45px;
+		line-height: 45px;
+		width: 30px;
 		text-align: center;
 	}
 	.list-wrapper .list .list-header{
